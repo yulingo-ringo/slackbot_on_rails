@@ -10,5 +10,7 @@ class SlackController < ApplicationController
         when 'event_callback'
             # ..
         end
+        json_hash  = params[:slack]
+        Body::TestService.new(json_hash).execute  
     end
 end
