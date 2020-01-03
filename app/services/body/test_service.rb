@@ -12,7 +12,8 @@ module  Body
                 end
             if @json[:event][:subtype] != "bot_message" #これがないと無限ループになる
                 if @json[:event][:text]=="redirect" 
-                    attachments_json = {
+                    attachments_json = [
+                        {
                             "fallback": "Upgrade your Slack client to use messages like these.",
                             "color": "#258ab5",
                             "attachment_type": "default",
@@ -32,20 +33,20 @@ module  Body
                                 }
                             ]
                         }
-                    
-                    attatchment_hash = JSON.parse(attachments_json)
+                    ]
+                    #attatchment_hash = JSON.parse(attachments_json)
                     body = {
                         :token => ENV['SLACK_BOT_USER_TOKEN'],#あとでherokuで設定します
                         :channel => @json[:event][:channel],#こうするとDM内に返信できます
-                        :text  => "ボタン出てきた？"
+                        :text  => "ボタン出てきた？",
+                        :attachments => attatchment_json
                         }
                     conn.post '/api/chat.postMessage',body.to_json, {"Content-type" => 'application/json',"Authorization"=>"Bearer #{ENV['SLACK_BOT_USER_TOKEN']}"}#ヘッダーはつけなければいけないらしい、このままで大丈夫です。
                 else 
                     body = {
                             :token => ENV['SLACK_BOT_USER_TOKEN'],#あとでherokuで設定します
                             :channel => @json[:event][:channel],#こうするとDM内に返信できます
-                            :text  => "<https://supership.jp/|🍣>",
-                            :attachments => attatchment_hash
+                            :text  => "<https://supership.jp/|🍣>"
                             }
                     conn.post '/api/chat.postMessage',body.to_json, {"Content-type" => 'application/json',"Authorization"=>"Bearer #{ENV['SLACK_BOT_USER_TOKEN']}"}#ヘッダーはつけなければいけないらしい、このままで大丈夫です。
                 end
