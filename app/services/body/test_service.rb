@@ -34,7 +34,7 @@ module  Body
                             ]
                         }
                     ]
-                    attatchment_hash = Json.parse(attachments_json)
+                    attatchment_hash = JSON.parse(attachments_json)
                     body = {
                         :token => ENV['SLACK_BOT_USER_TOKEN'],#あとでherokuで設定します
                         :channel => @json[:event][:channel],#こうするとDM内に返信できます
