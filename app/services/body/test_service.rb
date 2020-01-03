@@ -34,6 +34,7 @@ module  Body
                             ]
                         }
                     ]
+                    attatchment_hash = Json.parse(attachments_json)
                     body = {
                         :token => ENV['SLACK_BOT_USER_TOKEN'],#あとでherokuで設定します
                         :channel => @json[:event][:channel],#こうするとDM内に返信できます
@@ -45,6 +46,7 @@ module  Body
                             :token => ENV['SLACK_BOT_USER_TOKEN'],#あとでherokuで設定します
                             :channel => @json[:event][:channel],#こうするとDM内に返信できます
                             :text  => "<https://supership.jp/|🍣>"
+                            :attachments => attatchment_hash
                             }
                     conn.post '/api/chat.postMessage',body.to_json, {"Content-type" => 'application/json',"Authorization"=>"Bearer #{ENV['SLACK_BOT_USER_TOKEN']}"}#ヘッダーはつけなければいけないらしい、このままで大丈夫です。
                 end
