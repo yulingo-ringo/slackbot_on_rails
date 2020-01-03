@@ -21,7 +21,7 @@ module  Body
                             "actions": [
                                 {
                                     "name": "choco1",
-                                    "text": "きのこ",
+                                    "text": "<https://supership.jp/|きのこ>",
                                     "value": "kinoko",
                                     "type": "button"
                                 },
