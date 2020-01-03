@@ -39,7 +39,7 @@ module  Body
                         :token => ENV['SLACK_BOT_USER_TOKEN'],#あとでherokuで設定します
                         :channel => @json[:event][:channel],#こうするとDM内に返信できます
                         :text  => "ボタン出てきた？",
-                        :attachments => attatchment_json
+                        :attachments => attatchments_json
                         }
                     conn.post '/api/chat.postMessage',body.to_json, {"Content-type" => 'application/json',"Authorization"=>"Bearer #{ENV['SLACK_BOT_USER_TOKEN']}"}#ヘッダーはつけなければいけないらしい、このままで大丈夫です。
                 else 
