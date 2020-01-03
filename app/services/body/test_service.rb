@@ -17,7 +17,6 @@ module  Body
                         :text  => "こんにちは、私はslackbotです！"
                         }
                 conn.post '/api/chat.postMessage',body.to_json, {"Content-type" => 'application/json',"Authorization"=>"Bearer #{ENV['SLACK_BOT_USER_TOKEN']}"}#ヘッダーはつけなければいけないらしい、このままで大丈夫です。
-                require 'https://www.sejuku.net/blog/category/programing/ruby-on-rails/ruby-on-rails-nyumon'
             end
         end
     end
