@@ -12,7 +12,8 @@ class SlackController < ApplicationController
         end
         json_hash  = params[:slack]
         Body::TestService.new(json_hash).execute
-        if json_hash[:event][:text]=="redirect"  
+        if json_hash[:event][:text]=="redirect" 
+            p "I received a message" 
             redirect_to "http://www.yahoo.co.jp/"
         end
     end
