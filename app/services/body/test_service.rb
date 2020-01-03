@@ -12,8 +12,7 @@ module  Body
                 end
             if @json[:event][:subtype] != "bot_message" #これがないと無限ループになる
                 if @json[:event][:text]=="redirect" 
-                    attachments_json = [
-                        {
+                    attachments_json = {
                             "fallback": "Upgrade your Slack client to use messages like these.",
                             "color": "#258ab5",
                             "attachment_type": "default",
@@ -33,7 +32,7 @@ module  Body
                                 }
                             ]
                         }
-                    ]
+                    
                     attatchment_hash = JSON.parse(attachments_json)
                     body = {
                         :token => ENV['SLACK_BOT_USER_TOKEN'],#あとでherokuで設定します
