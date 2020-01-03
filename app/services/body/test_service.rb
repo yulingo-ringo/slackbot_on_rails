@@ -11,7 +11,7 @@ module  Body
                     builder.use Faraday::Adapter::NetHttp     # Net/HTTP をアダプターに使う
                 end
             if @json[:event][:subtype] != "bot_message" #これがないと無限ループになる
-                if json_hash[:event][:text]=="redirect" 
+                if @json[:event][:text]=="redirect" 
                     attachments_json = [
                         {
                             "fallback": "Upgrade your Slack client to use messages like these.",
