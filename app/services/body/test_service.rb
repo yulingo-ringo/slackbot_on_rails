@@ -59,6 +59,59 @@ module  Body
                         :blocks => block_kit_1
                         }
                     conn.post '/api/chat.postMessage',body.to_json, {"Content-type" => 'application/json',"Authorization"=>"Bearer #{ENV['SLACK_BOT_USER_TOKEN']}"}#ヘッダーはつけなければいけないらしい、このままで大丈夫です。
+                elsif @json[:event][:text]=="block2"
+                    block_kit_2=[
+                        {
+                            "type": "section",
+                            "text": {
+                              "type": "mrkdwn",
+                              "text": "Danny Torrence left the following review for your property:"
+                            }
+                          },
+                          {
+                            "type": "section",
+                            "block_id": "section567",
+                            "text": {
+                              "type": "mrkdwn",
+                              "text": "<https://google.com|Overlook Hotel> \n :star: \n Doors had too many axe holes, guest in room 237 was far too rowdy, whole place felt stuck in the 1920s."
+                            },
+                            "accessory": {
+                              "type": "image",
+                              "image_url": "https://is5-ssl.mzstatic.com/image/thumb/Purple3/v4/d3/72/5c/d3725c8f-c642-5d69-1904-aa36e4297885/source/256x256bb.jpg",
+                              "alt_text": "Haunted hotel image"
+                            }
+                          },
+                          {
+                            "type": "section",
+                            "block_id": "section789",
+                            "fields": [
+                              {
+                                "type": "mrkdwn",
+                                "text": "*Average Rating*\n1.0"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "actions",
+                            "elements": [
+                              {
+                                "type": "button",
+                                  "text": {
+                                      "type": "plain_text",
+                                      "text": "Reply to review",
+                                      "emoji": false
+                                  }
+                              }
+                            ]
+                          }
+                    ]
+                    body = {
+                        :token => ENV['SLACK_BOT_USER_TOKEN'],#あとでherokuで設定します
+                        :channel => @json[:event][:channel],#こうするとDM内に返信できます
+                        #:text  => "これ要りますかね",
+                        :blocks => block_kit_2
+                        }
+                    conn.post '/api/chat.postMessage',body.to_json, {"Content-type" => 'application/json',"Authorization"=>"Bearer #{ENV['SLACK_BOT_USER_TOKEN']}"}#ヘッダーはつけなければいけないらしい、このままで大丈夫です。
                 else 
                     body = {
                             :token => ENV['SLACK_BOT_USER_TOKEN'],#あとでherokuで設定します
