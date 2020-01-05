@@ -111,8 +111,35 @@ module  Body
                         :channel => @json[:event][:channel],#こうするとDM内に返信できます
                         #:text  => "これ要りますかね",
                         :blocks => block_kit_2
+                        }              
+                        conn.post '/api/chat.postMessage',body.to_json, {"Content-type" => 'application/json',"Authorization"=>"Bearer #{ENV['SLACK_BOT_USER_TOKEN']}"}#ヘッダーはつけなければいけないらしい、このままで大丈夫です。
+                elsif @json[:event][:text]=="block2"
+                    block_kit_1=[
+                        {
+                            "type": "input",
+                            "block_id": "input123",
+                            "label": {
+                              "type": "plain_text",
+                              "text": "Label of input"
+                            },
+                            "element": {
+                              "type": "plain_text_input",
+                              "action_id": "plain_input",
+                              "placeholder": {
+                                "type": "plain_text",
+                                "text": "Enter some plain text"
+                              }
+                            }
+                          }
+                    ]
+                    body = {
+                        :token => ENV['SLACK_BOT_USER_TOKEN'],#あとでherokuで設定します
+                        :channel => @json[:event][:channel],#こうするとDM内に返信できます
+                        #:text  => "これ要りますかね",
+                        :blocks => block_kit_1
                         }
                     conn.post '/api/chat.postMessage',body.to_json, {"Content-type" => 'application/json',"Authorization"=>"Bearer #{ENV['SLACK_BOT_USER_TOKEN']}"}#ヘッダーはつけなければいけないらしい、このままで大丈夫です。
+
                 else 
                     body = {
                             :token => ENV['SLACK_BOT_USER_TOKEN'],#あとでherokuで設定します
