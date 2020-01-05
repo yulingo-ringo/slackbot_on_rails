@@ -15,7 +15,7 @@ class SlackController < ApplicationController
     end
 
     def action
-        body = params[:slack]
+        body = JSON.parse(request.body.read)
         p body
         Body::TestService.new(body).interact
     end
