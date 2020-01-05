@@ -100,6 +100,7 @@ module  Body
                                       "type": "plain_text",
                                       "text": "Reply to review",
                                       "emoji": false
+                                      "url": "https://www.amazon.co.jp/"
                                   }
                               }
                             ]
