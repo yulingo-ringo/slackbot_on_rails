@@ -116,7 +116,7 @@ module  Body
                 elsif @json[:event][:text]=="block3"
                     block_kit_3=[
                         {
-                            "type": "input",
+                            "type": "section",
                             "block_id": "input123",
                             # "label": {
                             #   "type": "plain_text",
