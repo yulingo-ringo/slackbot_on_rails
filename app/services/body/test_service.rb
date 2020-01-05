@@ -113,30 +113,68 @@ module  Body
                         :blocks => block_kit_2
                         }              
                         conn.post '/api/chat.postMessage',body.to_json, {"Content-type" => 'application/json',"Authorization"=>"Bearer #{ENV['SLACK_BOT_USER_TOKEN']}"}#ヘッダーはつけなければいけないらしい、このままで大丈夫です。
-                elsif @json[:event][:text]=="block3"
-                    block_kit_3=[
+                elsif @json[:event][:text]=="modal1"
+                    modal_1=[
                         {
-                            "type": "section",
-                            "block_id": "input123",
-                            # "label": {
-                            #   "type": "plain_text",
-                            #   "text": "Label of input"
-                            # },
-                            "element": {
-                              "type": "plain_text_input",
-                              "action_id": "plain_input",
-                              "placeholder": {
-                                "type": "plain_text",
-                                "text": "Enter some plain text"
+                            "type": "modal",
+                            "title": {
+                              "type": "plain_text",
+                              "text": "Modal title"
+                            },
+                            "blocks": [
+                              {
+                                "type": "section",
+                                "text": {
+                                  "type": "mrkdwn",
+                                  "text": "It's Block Kit...but _in a modal_"
+                                },
+                                "block_id": "section1",
+                                "accessory": {
+                                  "type": "button",
+                                  "text": {
+                                    "type": "plain_text",
+                                    "text": "Click me"
+                                  },
+                                  "action_id": "button_abc",
+                                  "value": "Button value",
+                                  "style": "danger"
+                                }
+                              },
+                              {
+                                "type": "input",
+                                "label": {
+                                  "type": "plain_text",
+                                  "text": "Input label"
+                                },
+                                "element": {
+                                  "type": "plain_text_input",
+                                  "action_id": "input1",
+                                  "placeholder": {
+                                    "type": "plain_text",
+                                    "text": "Type in here"
+                                  },
+                                  "multiline": false
+                                },
+                                "optional": false
                               }
-                            }
+                            ],
+                            "close": {
+                              "type": "plain_text",
+                              "text": "Cancel"
+                            },
+                            "submit": {
+                              "type": "plain_text",
+                              "text": "Save"
+                            },
+                            "private_metadata": "Shhhhhhhh",
+                            "callback_id": "view_identifier_12"
                           }
                     ]
                     body = {
                         :token => ENV['SLACK_BOT_USER_TOKEN'],#あとでherokuで設定します
                         :channel => @json[:event][:channel],#こうするとDM内に返信できます
                         :text  => "これ要りますかね",
-                        :blocks => block_kit_3
+                        :blocks => modal_1
                         }
                     conn.post '/api/chat.postMessage',body.to_json, {"Content-type" => 'application/json',"Authorization"=>"Bearer #{ENV['SLACK_BOT_USER_TOKEN']}"}#ヘッダーはつけなければいけないらしい、このままで大丈夫です。
 
