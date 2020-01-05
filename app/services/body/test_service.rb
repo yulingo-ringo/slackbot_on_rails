@@ -117,7 +117,6 @@ module  Body
                     block_kit_3=[
                         {
                             "type": "input",
-                            "block_id": "input123",
                             "label": {
                               "type": "plain_text",
                               "text": "Label of input"
@@ -135,7 +134,7 @@ module  Body
                     body = {
                         :token => ENV['SLACK_BOT_USER_TOKEN'],#あとでherokuで設定します
                         :channel => @json[:event][:channel],#こうするとDM内に返信できます
-                        #:text  => "これ要りますかね",
+                        :text  => "これ要りますかね",
                         :blocks => block_kit_3
                         }
                     conn.post '/api/chat.postMessage',body.to_json, {"Content-type" => 'application/json',"Authorization"=>"Bearer #{ENV['SLACK_BOT_USER_TOKEN']}"}#ヘッダーはつけなければいけないらしい、このままで大丈夫です。
