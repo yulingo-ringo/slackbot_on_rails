@@ -15,7 +15,8 @@ class SlackController < ApplicationController
     end
 
     def action
-        body = params[:slack]['payload']
+        body = params[:slack]
+        p body
         Body::TestService.new(body).interact
     end
 end
