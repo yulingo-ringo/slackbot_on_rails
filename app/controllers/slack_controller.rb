@@ -15,7 +15,7 @@ class SlackController < ApplicationController
     end
 
     def action
-        unencoded = request.body.read.encode("utf-8")
+        unencoded = JSON.decode(request.body.read)
         p unencoded
         #body =JSON.parse(request.body.read)
         #body = JSON.stringify(request.body.read)
