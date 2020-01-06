@@ -17,7 +17,7 @@ class SlackController < ApplicationController
     end
 
     def action
-        p URI.decode(request.body.read)
+        p JSON.decode(URI.decode(request.body.read))
         # extend ActiveSupport::JSON.decode(request.body.read)
         # how_about = JSON.decode(request.body.read)
         # p how_about
