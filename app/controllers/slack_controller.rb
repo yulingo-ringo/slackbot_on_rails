@@ -18,10 +18,10 @@ class SlackController < ApplicationController
 
     def action
         body=URI.decode(request.body.read)
-        p body["trigger_id"]
-         extend ActiveSupport::JSON.decode(body)
-         how_about = JSON.decode(body)
-         p how_about
+        p body.class
+        # extend ActiveSupport::JSON.decode(body)
+        # how_about = JSON.decode(body)
+        # p how_about
         #p "hello"
         #deleted = request.body.read.delete("'")
         #p deleted
