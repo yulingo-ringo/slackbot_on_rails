@@ -18,11 +18,12 @@ class SlackController < ApplicationController
     def action
         extend ActiveSupport::JSON.decode(request.body.read)
         how_about = JSON.decode(request.body.read)
-        p "hello"
-        deleted = request.body.read.delete("'")
-        p deleted
-        @params ||= JSON.parse(deleted, {:symbolize_names => true})
-        p @params
+        p how_about
+        #p "hello"
+        #deleted = request.body.read.delete("'")
+        #p deleted
+        #@params ||= JSON.parse(deleted, {:symbolize_names => true})
+        #p @params
         #p unencoded
         #body =JSON.parse(request.body.read)
         #body = JSON.stringify(request.body.read)
