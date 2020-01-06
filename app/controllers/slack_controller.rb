@@ -15,8 +15,8 @@ class SlackController < ApplicationController
     end
 
     def action
-        unencoded = JSON.decode(request.body)
-        p unencoded
+        p request.body
+        #p unencoded
         #body =JSON.parse(request.body.read)
         #body = JSON.stringify(request.body.read)
         #Body::TestService.new(body).interact
