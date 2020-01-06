@@ -9,7 +9,7 @@ module Body
                 builder.use Faraday::Response::Logger     # リクエストを標準出力に出力する
                 builder.use Faraday::Adapter::NetHttp     # Net/HTTP をアダプターに使う
             end
-        if @json[:event][:subtype] != "bot_message"
+        #if @json[:event][:subtype] != "bot_message"
             if @json[:message][:text]=="Hello"
             elsif @json[:message][:text]=="こんにちは"
             else
@@ -75,7 +75,7 @@ module Body
                     }
                 conn.post '/api/views.open',body.to_json, {"Content-type" => 'application/json',"Authorization"=>"Bearer #{ENV['SLACK_BOT_USER_TOKEN']}"}#ヘッダーはつけなければいけないらしい、このままで大丈夫です。
                 end
-            end
+           # end
         end
     end   
 end
