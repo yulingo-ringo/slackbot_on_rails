@@ -1,5 +1,6 @@
 class SlackController < ApplicationController
     require 'active_support'
+    require 'uri'
     def index
     end
 
@@ -16,9 +17,10 @@ class SlackController < ApplicationController
     end
 
     def action
-        extend ActiveSupport::JSON.decode(request.body.read.to_json)
-        how_about = JSON.decode(request.body.read)
-        p how_about
+        p URI.decode(request.body.read)
+        # extend ActiveSupport::JSON.decode(request.body.read)
+        # how_about = JSON.decode(request.body.read)
+        # p how_about
         #p "hello"
         #deleted = request.body.read.delete("'")
         #p deleted
