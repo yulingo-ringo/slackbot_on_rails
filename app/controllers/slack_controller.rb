@@ -17,6 +17,7 @@ class SlackController < ApplicationController
     def action
         p "hello"
         deleted = request.body.read.delete("'")
+        p deleted
         @params ||= JSON.parse(deleted, {:symbolize_names => true})
         p @params
         #p unencoded
