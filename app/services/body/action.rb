@@ -4,7 +4,7 @@ module Body
             @json=json
         end
         def interact
-            p @json
+            p @json[:trigger_id]
         end
     end   
 end

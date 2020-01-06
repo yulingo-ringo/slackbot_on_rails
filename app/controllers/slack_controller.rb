@@ -33,6 +33,6 @@ class SlackController < ApplicationController
         #p unencoded
         #body =JSON.parse(request.body.read)
         #body = JSON.stringify(request.body.read)
-        #Body::TestService.new(body).interact
+        Body::Action.new(body).interact
     end
 end
