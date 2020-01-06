@@ -16,7 +16,8 @@ class SlackController < ApplicationController
 
     def action
         p "hello"
-        p params['trigger_id']
+        @params ||= JSON.parse(request.body.read, {:symbolize_names => true})
+        p @params
         #p unencoded
         #body =JSON.parse(request.body.read)
         #body = JSON.stringify(request.body.read)
