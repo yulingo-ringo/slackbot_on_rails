@@ -16,7 +16,7 @@ class SlackController < ApplicationController
 
     def action
         p "hello"
-        p request.body
+        p params[:slack]
         #p unencoded
         #body =JSON.parse(request.body.read)
         #body = JSON.stringify(request.body.read)
