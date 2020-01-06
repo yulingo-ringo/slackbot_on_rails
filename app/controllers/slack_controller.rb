@@ -18,8 +18,8 @@ class SlackController < ApplicationController
 
     def action
         body_before=URI.decode(request.body.read)
-        body_before.gsub(/payload=/,"")
-        body = JSON.parse(body_before)
+        gonna_parse=body_before.gsub(/payload=/,"")
+        body = JSON.parse(gonna_parse)
         p body
         
         # extend ActiveSupport::JSON.decode(body)
