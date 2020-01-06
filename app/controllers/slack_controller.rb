@@ -17,7 +17,8 @@ class SlackController < ApplicationController
     end
 
     def action
-        p URI.decode(request.body.read)
+        body=URI.decode(request.body.read)
+        p body["trigger_id"]
         # extend ActiveSupport::JSON.decode(request.body.read)
         # how_about = JSON.decode(request.body.read)
         # p how_about
